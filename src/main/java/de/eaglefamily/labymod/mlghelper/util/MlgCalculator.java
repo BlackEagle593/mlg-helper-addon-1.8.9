@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Objects;
 import net.labymod.core.LabyModCore;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -106,10 +107,9 @@ public class MlgCalculator {
   }
 
   private boolean isTargetValid(MovingObjectPosition target) {
-    BlockPos blockAbove = target.getBlockPos().north();
+    BlockPos blockAbove = target.getBlockPos().up();
     IBlockState blockState = LabyModCore.getMinecraft().getWorld().getBlockState(blockAbove);
-    Material material = blockState.getBlock().getMaterial();
-    return material == Material.air;
+    return blockState.getBlock() instanceof BlockAir;
   }
 
   private int getHeightDifference(MovingObjectPosition target) {
