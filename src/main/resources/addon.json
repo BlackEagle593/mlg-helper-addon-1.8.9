@@ -1,0 +1,9 @@
+{
+  "uuid": "%uuid%",
+  "author": "BlackEagle",
+  "name": "MLG Helper",
+  "mainClass": "de.eaglefamily.labymod.mlghelper.MlgHelperAddon",
+  "description": "Do you want to impress your friends with your skills? This addon will help you never mess up an MLG again! (only for GommeHD.net Bedwars)",
+  "version": 1,
+  "category": 2
+}

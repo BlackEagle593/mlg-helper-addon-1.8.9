@@ -1,0 +1,40 @@
+buildscript {
+  repositories {
+    jcenter()
+    maven {
+      name = "forge"
+      url = "http://files.minecraftforge.net/maven"
+    }
+  }
+  dependencies {
+    classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+  }
+}
+
+plugins {
+  id "net.minecraftforge.gradle.forge" version "2.0.2"
+  id "checkstyle"
+}
+
+group = "de.eaglefamily.labymod"
+version = "1.0.0"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = "UTF-8"
+
+minecraft {
+  version = "1.8.9-11.15.1.1855"
+  runDir = "run"
+  mappings = "stable_20"
+}
+
+reobf {
+  jar {
+    useNotchSrg()
+  }
+}
+
+checkstyle {
+  toolVersion = "8.30"
+}
