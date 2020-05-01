@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Objects;
 import net.labymod.core.LabyModCore;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -81,6 +83,10 @@ public class MlgCalculator {
       return MlgAction.NOTHING;
     }
 
+    if (!isTargetValid(target)) {
+      return MlgAction.NOTHING;
+    }
+
     int heightDifference = getHeightDifference(target) - 1;
     return getActionFromDifference(heightDifference);
   }
@@ -97,6 +103,13 @@ public class MlgCalculator {
     int differenceX = Math.abs(targetPosition.getX() - playerPosition.getX());
     int differenceZ = Math.abs(targetPosition.getZ() - playerPosition.getZ());
     return differenceX <= MAX_RANGE && differenceZ <= MAX_RANGE;
+  }
+
+  private boolean isTargetValid(MovingObjectPosition target) {
+    BlockPos blockAbove = target.getBlockPos().north();
+    IBlockState blockState = LabyModCore.getMinecraft().getWorld().getBlockState(blockAbove);
+    Material material = blockState.getBlock().getMaterial();
+    return material == Material.air;
   }
 
   private int getHeightDifference(MovingObjectPosition target) {
